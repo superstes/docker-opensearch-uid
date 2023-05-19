@@ -1,0 +1,46 @@
+---
+
+# define these vars:
+#  os_version: '5.0'
+#  os_user: 'opensearch'
+#  os_user_id: '1200'
+#  os_path_data: '/var/local/lib/os'
+
+- name: OpenSearch | Vars
+  ansible.builtin.set_fact:
+    os_path_build: '/etc/containers/build_opensearch'
+    os_compose_file: '/etc/containers/opensearch.yml'
+
+- name: OpenSearch | Adding service-user
+  ansible.builtin.user:
+    name: "{{ os_user }}"
+    uid: "{{ os_user_id }}"
+
+- name: OpenSearch | Creating build-directory
+  ansible.builtin.file:
+    path: "{{ os_path_build }}"
+    state: directory
+    mode: 0750
+    owner: 'root'
+    group: 'docker'
+
+- name: OpenSearch | Download Build-Files
+  ansible.builtin.unarchive:
+    src: 'https://github.com/opensearch-project/docker-images/archive/refs/heads/main.zip'
+    remote_src: true
+    dest: "{{ os_path_build }}/"
+    mode: 0750
+    owner: 'root'
+    group: 'docker'
+
+- name: OpenSearch | Copying docker-compose config
+  ansible.builtin.templates:
+    src: 'docker-compose.yml'
+    dest: "{{ os_compose_file }}"
+    mode: 0640
+    owner: 'root'
+    group: 'docker'
+
+# NOTE: could use community.docker.docker_compose
+- name: OpenSearch | Running docker-compose & building image locally
+  ansible.builtin.command: "docker-compose -f {{ os_compose_file }} up"
