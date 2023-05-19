@@ -9,5 +9,5 @@ The default image uses the UID/GID 1000.
 ## Covered here
 
 - [Ansible + docker-compose](https://github.com/superstes/docker-opensearch-uid/blob/main/Ansible.yml)
-- [Bash + docker uild](https://github.com/superstes/docker-opensearch-uid/blob/main/Bash+docker-build.sh)
+- [Bash + docker build](https://github.com/superstes/docker-opensearch-uid/blob/main/Bash+docker-build.sh)
 - [Bash + docker-compose](https://github.com/superstes/docker-opensearch-uid/blob/main/Bash+docker-compose.sh)
