@@ -1,0 +1,6 @@
+FROM opensearchproject/opensearch:{{ os_version }}
+USER root
+RUN groupmod --gid {{ os_user_id }} opensearch; \
+	usermod --uid {{ os_user_id }} opensearch; \
+	chown -R opensearch:opensearch /usr/share/opensearch
+USER opensearch

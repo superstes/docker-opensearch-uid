@@ -1,13 +1,11 @@
 ---
 
 # for use with bash replace these:
-#  os_version: '5.0'
+#  os_version: '2'
 #  os_user: 'opensearch'
 #  os_user_id: '1200'
 #  os_path_data: '/var/local/lib/opensearch'
 #  os_path_build: '/etc/containers/build_opensearch'
-
-version: '3'
 
 networks:
   opensearch:
@@ -22,12 +20,8 @@ services:
   opensearch:
     image: 'local/opensearch:{{ os_version }}'
     build:
-      context: '{{ os_path_build }}/docker-images-main/2.x/'
-      dockerfile: '{{ os_path_build }}/docker-images-main/2.x/Dockerfile'
-      args:
-        UID: {{ os_user_id }}
-        GID: {{ os_user_id }}
-        OS_VERSION: "{{ os_version }}"
+      context: .
+      dockerfile: 'Dockerfile'  # Patch_Dockerfile
     container_name: 'opensearch'
     user: '{{ os_user_id }}:{{ os_user_id }}'
     environment:

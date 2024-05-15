@@ -6,8 +6,13 @@ That can be useful if you need data-persistence (_using a volume_) and need to m
 
 The default image uses the UID/GID 1000.
 
-## Covered here
+## Options covered here
 
-- [Ansible + docker-compose](https://github.com/superstes/docker-opensearch-uid/blob/main/Ansible.yml)
-- [Bash + docker build](https://github.com/superstes/docker-opensearch-uid/blob/main/Bash+docker-build.sh)
-- [Bash + docker-compose](https://github.com/superstes/docker-opensearch-uid/blob/main/Bash+docker-compose.sh)
+* Patch existing image (faster, easier)
+  - [Dockerfile](https://github.com/superstes/docker-opensearch-uid/blob/main/Patch_Dockerfile)
+  - [Docker-compose](https://github.com/superstes/docker-opensearch-uid/blob/main/Patch_docker-compose.yml)
+
+* Re-Build official image
+  - [Ansible + docker-compose](https://github.com/superstes/docker-opensearch-uid/blob/main/Rebuild_Ansible.yml)
+  - [Bash + docker build](https://github.com/superstes/docker-opensearch-uid/blob/main/Rebuild_Bash+docker-build.sh)
+  - [Bash + docker-compose](https://github.com/superstes/docker-opensearch-uid/blob/main/Rebuild_Bash+docker-compose.sh)
